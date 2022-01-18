@@ -1,0 +1,64 @@
+<!-- Toolbar -->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">Users</a>
+        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+    </div>
+</nav>
+
+<div class="content" role="main">
+    <div class="container" style="margin-top: 10px;">
+        <div *ngIf="deviceId!='0'" [formGroup]="userForm">
+            <div class="row">
+                <label for="inputname" class="col-3  col-form-label pad0">User Name</label>
+                <div class="col-3 pad0">
+                    <input type="text" placeholder="userName" formControlName="username" class="form-control" />
+                </div>
+                <label for="inputname" class="col-3  col-form-label pad0">Email</label>
+                <div class="col-3 pad0">
+                    <input type="text" placeholder="email" formControlName="email" class="form-control" />
+                </div>
+            </div>
+            <div class="row mt-3">
+                <label for="inputname" class="col-3  col-form-label pad0">Contact No</label>
+                <div class="col-3 pad0">
+                    <input type="text" placeholder="contactNO" formControlName="contactno" class="form-control" />
+                </div>
+                <div class="col-3 pad0">
+                    <!-- <button class="btn btn-primary" *ngIf="deviceId=='0'" (click)="addDevice()">Add</button> -->
+                    <button class="btn btn-primary mr-1" (click)="updateDevice()">update</button>
+                    <button class="btn btn-danger" (click)="deviceId = 0">cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <h4> User List</h4>
+        </div>
+        <div class="row mt-3">
+            <table id="devices" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Contact Number</th>
+                        <th>edit</th>
+                        <th>delete</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dev of userList">
+                        <td scope="row">{{ dev.username }}</td>
+                        <td>{{ dev.email }}</td>
+                        <td>{{ dev.contactno }}</td>
+                        <td><button (click)="editDevice(dev)">Edit</button></td>
+                        <td><button (click)="deleteDevice(dev)">Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+</div>
